@@ -1,0 +1,31 @@
+package model;
+
+import visitor.Visitor;
+
+public class Image extends Glyph{
+    String tagname = "img";
+    String attribute = "";
+    public Image(){}
+
+    @Override
+    public int getChildSize() {
+        return 0;
+    }
+
+    @Override
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
+    }
+
+    @Override
+    public String getAttribute() {
+        return attribute;
+    }
+    @Override
+    public String getTagname() { return tagname; }
+
+    @Override
+    public boolean isSingleTag() { return true; }
+    @Override
+    public void accept(Visitor visitor) { visitor.visit(this); }
+}
