@@ -1,13 +1,14 @@
 package model;
 
-import Iterator.GlyphStorage;
-import Iterator.ListGlyphStorage;
+import Iterator.Iterator;
+import Iterator.GlyphListIterator;
 import visitor.Visitor;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Span extends Glyph{
-    GlyphStorage glyphs = new ListGlyphStorage();
+    List<Glyph> glyphs = new ArrayList<>();
     String tagname = "span";
     String attribute = "";
     public Span(){}
@@ -17,8 +18,8 @@ public class Span extends Glyph{
         glyphs.add(g);
     }
     @Override
-    public void remove(Glyph g) {
-        glyphs.remove(g);
+    public void remove(int i) {
+        glyphs.remove(i);
     }
 
     @Override
@@ -28,6 +29,10 @@ public class Span extends Glyph{
     @Override
     public int getChildSize() {
         return glyphs.size();
+    }
+    @Override
+    public Iterator getIterator() {
+        return new GlyphListIterator(this);
     }
 
     @Override
@@ -41,12 +46,14 @@ public class Span extends Glyph{
     }
     @Override
     public String getTagname() { return tagname; }
+    @Override
+    public String getContent() { return ""; }
 
     @Override
     public boolean isSingleTag() { return false; }
     @Override
     public void accept(Visitor visitor) {
-        Iterator<Glyph> iterator = glyphs.iterator();
+        Iterator iterator = this.getIterator();
         while (iterator.hasNext()) {
             iterator.next().accept(visitor);
         }

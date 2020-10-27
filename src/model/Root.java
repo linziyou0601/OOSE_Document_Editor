@@ -1,13 +1,15 @@
 package model;
 
-import Iterator.ArrayGlyphStorage;
-import Iterator.GlyphStorage;
+import Iterator.Iterator;
+import Iterator.GlyphListIterator;
 import visitor.Visitor;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Root extends Glyph{
-    GlyphStorage glyphs = new ArrayGlyphStorage();
+    List<Glyph> glyphs = new ArrayList<>();
     String tagname = "body";
     String attribute = "";
     public Root(){}
@@ -17,15 +19,21 @@ public class Root extends Glyph{
         glyphs.add(g);
     }
     @Override
-    public void remove(Glyph g) {
-        glyphs.remove(g);
+    public void remove(int i) {
+        glyphs.remove(i);
     }
 
     @Override
-    public Glyph getChild(int i) { return glyphs.get(i); }
+    public Glyph getChild(int i) {
+        return glyphs.get(i);
+    }
     @Override
     public int getChildSize() {
         return glyphs.size();
+    }
+    @Override
+    public Iterator getIterator() {
+        return new GlyphListIterator(this);
     }
 
     @Override
@@ -39,12 +47,14 @@ public class Root extends Glyph{
     }
     @Override
     public String getTagname() { return tagname; }
+    @Override
+    public String getContent() { return ""; }
 
     @Override
     public boolean isSingleTag() { return false; }
     @Override
     public void accept(Visitor visitor) {
-        Iterator<Glyph> iterator = glyphs.iterator();
+        Iterator iterator = this.getIterator();
         while (iterator.hasNext()) {
             iterator.next().accept(visitor);
         }

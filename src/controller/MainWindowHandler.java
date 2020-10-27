@@ -10,7 +10,11 @@ import model.Paragraph;
 import model.Root;
 import ui.DialogWindow;
 import ui.MainWindow;
-import utils.*;
+import utils.BackgroundColorAction;
+import utils.ForegroundColorAction;
+import utils.InsertImageAction;
+import utils.OOSEFILEtoGlyphParser;
+import visitor.GlyphToOOSEFILEVisitor;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -34,6 +38,7 @@ public class MainWindowHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
+        this.root = mainWindow.getRoot();
         switch (s) {
             //----------------------------------------編輯----------------------------------------
             case "cut":
@@ -169,12 +174,15 @@ public class MainWindowHandler implements ActionListener {
                         FileWriter fileWriter = new FileWriter(file, false);
                         BufferedWriter writer = new BufferedWriter(fileWriter);
                         // 寫入資料
+                        GlyphToOOSEFILEVisitor glyphToOOSEFILEVisitor = new GlyphToOOSEFILEVisitor();
+                        root.accept(glyphToOOSEFILEVisitor);
                         String saving_oosefile = "{\"format\": \"" + mainWindow.getFormatting().getTYPE() + "\"," +
-                                             "\"content\": " + new HTMLtoOOSEFILEParser().parse(mainWindow.getEditorContent()) + "}";
+                                                 "\"content\": " + glyphToOOSEFILEVisitor.getParseString() + "}";
                         writer.write(saving_oosefile);
                         writer.flush();
                         writer.close();
                     } catch (Exception evt) {
+                        evt.printStackTrace();
                         dialog.showDialog(evt.getMessage(), "錯誤");
                     }
                 }

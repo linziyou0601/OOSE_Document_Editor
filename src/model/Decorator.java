@@ -9,8 +9,8 @@ public abstract class Decorator extends Glyph{
         glyph.insert(g);
     }
     @Override
-    public void remove(Glyph g) {
-        glyph.remove(g);
+    public void remove(int i) {
+        glyph.remove(i);
     }
 
     @Override

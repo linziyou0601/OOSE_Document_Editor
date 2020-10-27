@@ -16,9 +16,7 @@ public class OOSEFILEtoGlyphParser implements HTMLParser<Glyph>{
     @Override
     public Glyph parse(String oosefile_string) {
         Gson gson = new Gson();
-        System.out.println(oosefile_string);
         Map<String, Object> document = gson.fromJson(oosefile_string, new TypeToken<Map<String, Object>>(){}.getType()); //Type type = ;
-        System.out.println("123");
         return getParse((Map<String, Object>)document.get("content"));
     }
 

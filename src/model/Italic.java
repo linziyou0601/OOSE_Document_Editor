@@ -25,6 +25,8 @@ public class Italic extends Decorator{
     }
     @Override
     public String getTagname() { return tagname; }
+    @Override
+    public String getContent() { return ""; }
 
     @Override
     public boolean isSingleTag() { return false; }

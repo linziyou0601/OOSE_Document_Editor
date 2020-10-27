@@ -40,8 +40,6 @@ public class MainWindow extends Window {
 
     // 排版物件及Visitor物件初始化
     private Formatting formatting = new FullFormatting();
-    private DrawGlyphVisitor drawGlyphVisitor = new DrawGlyphVisitor(formatting);
-    private CountCharacterVisitor countCharacterVisitor = new CountCharacterVisitor();
 
     // Glyph初始化
     private Glyph root = null;
@@ -127,8 +125,8 @@ public class MainWindow extends Window {
                 // 儲存游標狀態
                 int caretPosition = editorViewer.getCaretPosition();
                 // 執行Visit
-                drawGlyphVisitor = new DrawGlyphVisitor(formatting);
-                countCharacterVisitor = new CountCharacterVisitor();
+                DrawGlyphVisitor drawGlyphVisitor = new DrawGlyphVisitor(formatting);
+                CountCharacterVisitor countCharacterVisitor = new CountCharacterVisitor();
                 root.accept(drawGlyphVisitor);
                 root.accept(countCharacterVisitor);
                 // 畫到 editorViewer上
@@ -167,7 +165,9 @@ public class MainWindow extends Window {
         colorMenu.setEnabled(enabled);
     }
     // 取得排版
-    public Formatting getFormatting(){ return this. formatting; }
+    public Formatting getFormatting(){ return this.formatting; }
+    // 取得Glyph
+    public Glyph getRoot() { return this.root; }
 
 
     //================================================== INSERT ACTION ==================================================
