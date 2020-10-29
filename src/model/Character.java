@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Character extends Glyph{
-    String tagname = "character";
-    String attribute = "", content = "";
+    private String tagname = "character";
+    private String attribute = "", content = "";
     public Character(){}
     @Override
     public int getChildSize() {

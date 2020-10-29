@@ -9,9 +9,9 @@ import java.util.List;
 
 
 public class Root extends Glyph{
-    List<Glyph> glyphs = new ArrayList<>();
-    String tagname = "body";
-    String attribute = "";
+    private List<Glyph> glyphs = new ArrayList<>();
+    private String tagname = "body";
+    private String attribute = "";
     public Root(){}
 
     @Override

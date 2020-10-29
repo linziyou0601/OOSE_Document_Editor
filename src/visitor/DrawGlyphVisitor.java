@@ -5,36 +5,39 @@ import model.Character;
 import model.*;
 import utils.parseArgs;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class DrawGlyphVisitor implements Visitor{
-    Stack<parseArgs> parseStack = new Stack<>();
-    Formatting formatting;
+    private Stack<parseArgs> parseStack = new Stack<>();
+    private Formatting formatting;
     public DrawGlyphVisitor(Formatting formatting){
         this.formatting = formatting;
     }
     @Override
-    public void visit(Root root) {appendParseString(root);}
+    public void visit(Root root) {pushCompositeToStack(root);}
     @Override
-    public void visit(Paragraph paragraph) {appendParseString(paragraph);}
+    public void visit(Paragraph paragraph) {pushCompositeToStack(paragraph);}
     @Override
-    public void visit(Span span) {appendParseString(span);}
+    public void visit(Span span) {pushCompositeToStack(span);}
     @Override
-    public void visit(Image image) {appendParseString(image);}
+    public void visit(Image image) {pushLeafToStack(image);}
     @Override
-    public void visit(Character character) {appendParseString(character);}
+    public void visit(Character character) {pushLeafToStack(character);}
     @Override
-    public void visit(Bold bold) {appendParseString(bold);}
+    public void visit(Bold bold) {pushCompositeToStack(bold);}
     @Override
-    public void visit(Italic italic) {appendParseString(italic);}
+    public void visit(Italic italic) {pushCompositeToStack(italic);}
     @Override
-    public void visit(Underline underline) {appendParseString(underline);}
+    public void visit(Underline underline) {pushCompositeToStack(underline);}
     @Override
-    public void visit(Font font) {appendParseString(font);}
+    public void visit(Font font) {pushCompositeToStack(font);}
     @Override
-    public void visit(Glyph glyph) {appendParseString(glyph);}
+    public void visit(Glyph glyph) {pushCompositeToStack(glyph);}
 
-    public void appendParseString(Glyph g) {
+    public void pushCompositeToStack(Glyph g){
         parseArgs parseArgs = formatting.parse(g);
         //若目前Glyph有子元素，且子元素數目 >= 目前堆疊內項目數
         if(g.getChildSize()>0 && parseStack.size() >= g.getChildSize()){
@@ -50,8 +53,13 @@ public class DrawGlyphVisitor implements Visitor{
             pushBackParseArgs.setFullTag(childParseStrings);
             parseStack.push(pushBackParseArgs);
         } else {
-            parseStack.push(parseArgs);
+            pushLeafToStack(g);
         }
+    }
+
+    public void pushLeafToStack(Glyph g){
+        parseArgs parseArgs = formatting.parse(g);
+        parseStack.push(parseArgs);
     }
 
     public String getParseString(){

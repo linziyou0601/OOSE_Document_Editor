@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Italic extends Decorator{
-    String tagname = "i";
-    String attribute = "";
+    private String tagname = "i";
+    private String attribute = "";
     public Italic(Glyph g){
         super.glyph = g;
     }

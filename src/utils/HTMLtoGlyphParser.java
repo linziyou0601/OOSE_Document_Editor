@@ -13,7 +13,7 @@ import org.jsoup.parser.Tag;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HTMLtoGlyphParser implements HTMLParser<Glyph>{
+public class HTMLtoGlyphParser implements Parser<Glyph> {
     @Override
     public Glyph parse(String html) {
         Document document = Jsoup.parse(html.replaceAll("\\s{2,}"," "));

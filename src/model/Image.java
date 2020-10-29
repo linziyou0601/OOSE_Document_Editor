@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Image extends Glyph{
-    String tagname = "img";
-    String attribute = "";
+    private String tagname = "img";
+    private String attribute = "";
     public Image(){}
 
     @Override

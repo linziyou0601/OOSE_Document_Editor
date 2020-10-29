@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Span extends Glyph{
-    List<Glyph> glyphs = new ArrayList<>();
-    String tagname = "span";
-    String attribute = "";
+    private List<Glyph> glyphs = new ArrayList<>();
+    private String tagname = "span";
+    private String attribute = "";
     public Span(){}
 
     @Override

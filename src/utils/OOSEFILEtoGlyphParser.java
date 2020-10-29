@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class OOSEFILEtoGlyphParser implements HTMLParser<Glyph>{
+public class OOSEFILEtoGlyphParser implements Parser<Glyph> {
 
     @Override
     public Glyph parse(String oosefile_string) {

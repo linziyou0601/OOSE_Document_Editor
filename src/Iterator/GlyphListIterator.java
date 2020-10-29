@@ -3,8 +3,8 @@ package Iterator;
 import model.Glyph;
 
 public class GlyphListIterator implements Iterator {
-    int position = 0;
-    Glyph glyphComposite;
+    private int position = 0;
+    private Glyph glyphComposite;
     public GlyphListIterator(Glyph glyphComposite){
         this.glyphComposite = glyphComposite;
     }

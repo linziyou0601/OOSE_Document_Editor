@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Font extends Decorator{
-    String tagname = "font";
-    String attribute = "";
+    private String tagname = "font";
+    private String attribute = "";
     public Font(Glyph g){
         super.glyph = g;
     }

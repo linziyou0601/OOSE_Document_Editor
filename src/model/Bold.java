@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Bold extends Decorator{
-    String tagname = "b";
-    String attribute = "";
+    private String tagname = "b";
+    private String attribute = "";
     public Bold(Glyph g){
         super.glyph = g;
     }

@@ -3,8 +3,8 @@ package model;
 import visitor.Visitor;
 
 public class Underline extends Decorator{
-    String tagname = "u";
-    String attribute = "";
+    private String tagname = "u";
+    private String attribute = "";
     public Underline(Glyph g){
         super.glyph = g;
     }

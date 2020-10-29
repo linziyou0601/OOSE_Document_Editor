@@ -29,11 +29,8 @@ import java.util.Map;
 
 public class MainWindowHandler implements ActionListener {
     MainWindow mainWindow;
-    DialogWindow dialog = new DialogWindow(Application.impl);
     Glyph root;
-    public MainWindowHandler(MainWindow mainWindow){
-        this.mainWindow = mainWindow;
-    }
+    public MainWindowHandler(MainWindow mainWindow){ this.mainWindow = mainWindow; }
     // 當MenuItem按鈕按下去時
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -63,7 +60,7 @@ public class MainWindowHandler implements ActionListener {
                     AttributeSet outerAttr = new InsertImageAction(absPath).actionPerformed(e);
                     mainWindow.insertEditorImage(outerAttr);
                 } else {
-                    dialog.showDialog("取消開啟舊檔操作", "提醒");
+                    mainWindow.showDialog("取消開啟舊檔操作", "提醒");
                 }
                 break;
             }
@@ -148,13 +145,13 @@ public class MainWindowHandler implements ActionListener {
                         else  mainWindow.setFormatting(new PlaintextFormatting());
                     } catch (Exception evt) {
                         System.out.println(evt.getMessage());
-                        dialog.showDialog(evt.getMessage(), "錯誤");
+                        mainWindow.showDialog(evt.getMessage(), "錯誤");
                     }
 
                 }
                 // If the user cancelled the operation
                 else
-                    dialog.showDialog("取消儲存檔案操作", "提醒");
+                    mainWindow.showDialog("取消儲存檔案操作", "提醒");
                 break;
 
             }
@@ -183,12 +180,12 @@ public class MainWindowHandler implements ActionListener {
                         writer.close();
                     } catch (Exception evt) {
                         evt.printStackTrace();
-                        dialog.showDialog(evt.getMessage(), "錯誤");
+                        mainWindow.showDialog(evt.getMessage(), "錯誤");
                     }
                 }
                 // If the user cancelled the operation
                 else
-                    dialog.showDialog("取消儲存檔案操作", "提醒");
+                    mainWindow.showDialog("取消儲存檔案操作", "提醒");
                 break;
             }
 
@@ -202,7 +199,7 @@ public class MainWindowHandler implements ActionListener {
 
             //----------------------------------------幫助----------------------------------------
             case "about":
-                dialog.showDialog("這是運行在" + Application.impl.getEnvironment() + "環境的文件編輯器", "關於");
+                mainWindow.showDialog("這是運行在" + Application.impl.getEnvironment() + "環境的文件編輯器", "關於");
                 break;
         }
     }

@@ -4,8 +4,8 @@ import controller.EditorViewerHandler;
 import controller.MainWindowHandler;
 import formatting.FullFormatting;
 import formatting.Formatting;
+import main.Application;
 import model.Glyph;
-import utils.BlankTextInputAction;
 import utils.HTMLtoGlyphParser;
 import visitor.CountCharacterVisitor;
 import visitor.DrawGlyphVisitor;
@@ -18,6 +18,7 @@ import javax.swing.*;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
@@ -26,12 +27,12 @@ public class MainWindow extends Window {
     private final JFrame frame;
     private final int width = 800;
     private final int height = 600;
+    private final DialogWindow dialogWindow;
 
     // Handler初始化
     private final MainWindowHandler mainWindowHandler = new MainWindowHandler(this);
     private final EditorViewerHandler editorViewerHandler = new EditorViewerHandler(this);
-    private final WidgetFactory widgetFactory = WidgetFactoryProducer.getFactory(super.impl.getEnvironment());
-    private final BlankTextInputAction blankTextInputAction = new BlankTextInputAction(this);
+    private final WidgetFactory widgetFactory = WidgetFactoryProducer.getFactory(super.getEnvironment());
 
     // 編輯區初始化
     private final JTextPane editorViewer = new JTextPane();
@@ -80,7 +81,7 @@ public class MainWindow extends Window {
         super(impl);
         //-------------------- JFrame --------------------
         // 建立JFrame
-        frame = impl.drawFrame();
+        frame = super.drawFrame();
         frame.setTitle("OOSE Document Editor");
         frame.setBounds(100, 100, width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,6 +94,9 @@ public class MainWindow extends Window {
         frame.add(createScrollPane(editorViewer), BorderLayout.CENTER);
         frame.add(statusBar, BorderLayout.SOUTH);
 
+        // 設定 Dialog Window
+        dialogWindow = new DialogWindow(impl);
+
         //-------------------- 狀態欄 --------------------
         statusLabel.setHorizontalAlignment(JLabel.RIGHT);
         statusBar.setPreferredSize(new Dimension(statusBar.getWidth(), 30));
@@ -101,7 +105,10 @@ public class MainWindow extends Window {
         editorViewer.setContentType("text/html");
         editorViewer.setText("<html><head></head><body><p></p></body></html>");
         editorViewer.getDocument().addDocumentListener(editorViewerHandler);
-        editorViewer.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), blankTextInputAction);
+        editorViewer.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), new AbstractAction(){
+            @Override
+            public void actionPerformed(ActionEvent e) { insertBlankText(); }
+        });
 
     }
 
@@ -151,8 +158,6 @@ public class MainWindow extends Window {
         this.root = root;
         drawIntoEditorViewer();
     }
-    // 取得 editorViewer 的結構原始碼
-    public String getEditorContent(){ return editorViewer.getText(); }
     // 設定排版
     public void setFormatting(Formatting formatting){
         // 設定排版模式
@@ -168,6 +173,10 @@ public class MainWindow extends Window {
     public Formatting getFormatting(){ return this.formatting; }
     // 取得Glyph
     public Glyph getRoot() { return this.root; }
+    // 啟動Dialog Window
+    public void showDialog(String message, String title) {
+        dialogWindow.showDialog(message, title);
+    }
 
 
     //================================================== INSERT ACTION ==================================================

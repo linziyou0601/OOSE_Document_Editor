@@ -3,7 +3,7 @@ package model;
 import visitor.Visitor;
 
 public abstract class Decorator extends Glyph{
-    Glyph glyph;
+    protected Glyph glyph;
     @Override
     public void insert(Glyph g) {
         glyph.insert(g);

@@ -1,5 +1,5 @@
 package utils;
 
-public interface HTMLParser<T> {
+public interface Parser<T> {
     T parse(String s);
 }

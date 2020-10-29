@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paragraph extends Glyph{
-    List<Glyph> glyphs = new ArrayList<>();
-    String tagname = "p";
-    String attribute = "";
+    private List<Glyph> glyphs = new ArrayList<>();
+    private String tagname = "p";
+    private String attribute = "";
     public Paragraph(){}
 
     @Override
