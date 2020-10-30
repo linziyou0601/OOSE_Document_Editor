@@ -235,9 +235,9 @@ public class MainWindow extends Window {
         saveFileMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        fileMenu.add(newFileMenu);
-        fileMenu.add(openFileMenu);
-        fileMenu.add(saveFileMenu);
+        fileMenu.addMenuItem(newFileMenu);
+        fileMenu.addMenuItem(openFileMenu);
+        fileMenu.addMenuItem(saveFileMenu);
 
         // --------------------------------------------------建立選單選項 [編輯]--------------------------------------------------
         editMenu = widgetFactory.createMenu();
@@ -267,10 +267,10 @@ public class MainWindow extends Window {
         insertImgEditMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        editMenu.add(cutEditMenu);
-        editMenu.add(copyEditMenu);
-        editMenu.add(pasteEditMenu);
-        editMenu.add(insertImgEditMenu);
+        editMenu.addMenuItem(cutEditMenu);
+        editMenu.addMenuItem(copyEditMenu);
+        editMenu.addMenuItem(pasteEditMenu);
+        editMenu.addMenuItem(insertImgEditMenu);
 
         // --------------------------------------------------建立選單選項 [樣式]--------------------------------------------------
         fontStyleMenu = widgetFactory.createMenu();
@@ -300,9 +300,9 @@ public class MainWindow extends Window {
         underlineFontStyleMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        fontStyleMenu.add(boldFontStyleMenu);
-        fontStyleMenu.add(italicFontStyleMenu);
-        fontStyleMenu.add(underlineFontStyleMenu);
+        fontStyleMenu.addMenuItem(boldFontStyleMenu);
+        fontStyleMenu.addMenuItem(italicFontStyleMenu);
+        fontStyleMenu.addMenuItem(underlineFontStyleMenu);
 
         // --------------------------------------------------建立選單選項 [色彩]--------------------------------------------------
         colorMenu = widgetFactory.createMenu();
@@ -373,16 +373,16 @@ public class MainWindow extends Window {
         blackForegroundColorMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        colorMenu.add(redBackgroundColorMenu);
-        colorMenu.add(greenBackgroundColorMenu);
-        colorMenu.add(blueBackgroundColorMenu);
-        colorMenu.add(blackBackgroundColorMenu);
-        colorMenu.add(noneBackgroundColorMenu);
-        colorMenu.add(redForegroundColorMenu);
-        colorMenu.add(greenForegroundColorMenu);
-        colorMenu.add(blueForegroundColorMenu);
-        colorMenu.add(whiteForegroundColorMenu);
-        colorMenu.add(blackForegroundColorMenu);
+        colorMenu.addMenuItem(redBackgroundColorMenu);
+        colorMenu.addMenuItem(greenBackgroundColorMenu);
+        colorMenu.addMenuItem(blueBackgroundColorMenu);
+        colorMenu.addMenuItem(blackBackgroundColorMenu);
+        colorMenu.addMenuItem(noneBackgroundColorMenu);
+        colorMenu.addMenuItem(redForegroundColorMenu);
+        colorMenu.addMenuItem(greenForegroundColorMenu);
+        colorMenu.addMenuItem(blueForegroundColorMenu);
+        colorMenu.addMenuItem(whiteForegroundColorMenu);
+        colorMenu.addMenuItem(blackForegroundColorMenu);
 
         // --------------------------------------------------建立選單選項 [排版]--------------------------------------------------
         formatMenu = widgetFactory.createMenu();
@@ -402,8 +402,8 @@ public class MainWindow extends Window {
         plaintextFormatMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        formatMenu.add(fullFormatMenu);
-        formatMenu.add(plaintextFormatMenu);
+        formatMenu.addMenuItem(fullFormatMenu);
+        formatMenu.addMenuItem(plaintextFormatMenu);
 
         // --------------------------------------------------建立選單選項 [幫助]--------------------------------------------------
         helpMenu = widgetFactory.createMenu();
@@ -418,15 +418,15 @@ public class MainWindow extends Window {
         aboutHelpMenu.addActionListener(mainWindowHandler);
 
         // 按鈕加入上級選單中
-        helpMenu.add(aboutHelpMenu);
+        helpMenu.addMenuItem(aboutHelpMenu);
 
         // --------------------------------------------------按鈕加入上級選單中--------------------------------------------------
-        bar.add(fileMenu);
-        bar.add(editMenu);
-        bar.add(fontStyleMenu);
-        bar.add(colorMenu);
-        bar.add(formatMenu);
-        bar.add(helpMenu);
+        bar.addMenu(fileMenu);
+        bar.addMenu(editMenu);
+        bar.addMenu(fontStyleMenu);
+        bar.addMenu(colorMenu);
+        bar.addMenu(formatMenu);
+        bar.addMenu(helpMenu);
         return bar;
     }
 }

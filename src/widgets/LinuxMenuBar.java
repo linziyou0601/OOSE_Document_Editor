@@ -14,4 +14,9 @@ public class LinuxMenuBar extends MenuBar {
         g2d.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
 
     }
+
+    @Override
+    public void addMenu(Menu m) {
+        this.add(m);
+    }
 }

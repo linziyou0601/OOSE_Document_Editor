@@ -27,7 +27,13 @@ public class WinMenu extends Menu {
         });
     }
 
+    @Override
     public void setDescription(String description) {
         super.setText(description);
+    }
+
+    @Override
+    public void addMenuItem(MenuItem m) {
+        this.add(m);
     }
 }
