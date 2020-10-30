@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.*;
 
 public abstract class Window{
     WindowImp impl;
@@ -8,5 +9,6 @@ public abstract class Window{
         this.impl = impl;
     }
     public String getEnvironment(){ return this.impl.getEnvironment(); }
+    public Font getSystemFont(){ return this.impl.getSystemFont(); }
     public JFrame drawFrame(){ return this.impl.drawFrame(); }
 }

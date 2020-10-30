@@ -99,6 +99,7 @@ public class MainWindow extends Window {
 
         //-------------------- 狀態欄 --------------------
         statusLabel.setHorizontalAlignment(JLabel.RIGHT);
+        statusLabel.setFont(super.getSystemFont());
         statusBar.setPreferredSize(new Dimension(statusBar.getWidth(), 30));
         statusBar.add(statusLabel);
         //-------------------- 編輯器區 --------------------

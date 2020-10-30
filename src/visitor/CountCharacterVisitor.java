@@ -23,7 +23,7 @@ public class CountCharacterVisitor implements Visitor{
     public void visit(Image image) {}
     @Override
     public void visit(Character character) {
-        if(character.getContent().equals(""))
+        if(!character.getContent().equals(""))
             characterCnt++;
     }
     @Override
