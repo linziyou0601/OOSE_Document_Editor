@@ -189,7 +189,7 @@ public class MainWindowHandler implements ActionListener {
                 break;
             }
 
-            //----------------------------------------檔案----------------------------------------
+            //----------------------------------------排版----------------------------------------
             case "full":
                 mainWindow.setFormatting(new FullFormatting());
                 break;
