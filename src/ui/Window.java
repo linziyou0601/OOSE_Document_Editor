@@ -1,5 +1,7 @@
 package ui;
 
+import widgets.WidgetFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,4 +13,5 @@ public abstract class Window{
     public String getEnvironment(){ return this.impl.getEnvironment(); }
     public Font getSystemFont(){ return this.impl.getSystemFont(); }
     public JFrame drawFrame(){ return this.impl.drawFrame(); }
+    public WidgetFactory getWidgetFactory(){ return this.impl.getWidgetFactory(); }
 }

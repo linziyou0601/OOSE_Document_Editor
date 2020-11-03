@@ -1,5 +1,9 @@
 package ui;
 
+import widgets.WidgetFactory;
+import widgets.WidgetFactoryProducer;
+import widgets.WinWidgetFactory;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -32,6 +36,11 @@ public class WinWindowImp implements WindowImp{
     @Override
     public Font getSystemFont(){
         return this.systemFont;
+    }
+
+    @Override
+    public WidgetFactory getWidgetFactory() {
+        return WidgetFactoryProducer.getFactory(ENVIRONMENT);
     }
 
     public void setUIFont() {

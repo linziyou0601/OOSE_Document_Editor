@@ -32,7 +32,7 @@ public class MainWindow extends Window {
     // Handler初始化
     private final MainWindowHandler mainWindowHandler = new MainWindowHandler(this);
     private final EditorViewerHandler editorViewerHandler = new EditorViewerHandler(this);
-    private final WidgetFactory widgetFactory = WidgetFactoryProducer.getFactory(super.getEnvironment());
+    private final WidgetFactory widgetFactory;
 
     // 編輯區初始化
     private final JTextPane editorViewer = new JTextPane();
@@ -79,6 +79,8 @@ public class MainWindow extends Window {
     //================================================== GUI ==================================================
     public MainWindow(WindowImp impl) {
         super(impl);
+        widgetFactory = super.getWidgetFactory();
+
         //-------------------- JFrame --------------------
         // 建立JFrame
         frame = super.drawFrame();

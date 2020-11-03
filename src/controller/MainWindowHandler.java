@@ -4,11 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import formatting.FullFormatting;
 import formatting.PlaintextFormatting;
-import main.Application;
 import model.Glyph;
 import model.Paragraph;
 import model.Root;
-import ui.DialogWindow;
 import ui.MainWindow;
 import utils.BackgroundColorAction;
 import utils.ForegroundColorAction;
@@ -199,7 +197,7 @@ public class MainWindowHandler implements ActionListener {
 
             //----------------------------------------幫助----------------------------------------
             case "about":
-                mainWindow.showDialog("這是運行在" + Application.impl.getEnvironment() + "環境的文件編輯器", "關於");
+                mainWindow.showDialog("這是運行在" + mainWindow.getEnvironment() + "環境的文件編輯器", "關於");
                 break;
         }
     }
