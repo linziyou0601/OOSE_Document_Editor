@@ -188,9 +188,11 @@ public class MainWindowHandler implements ActionListener {
             }
 
             //----------------------------------------排版----------------------------------------
+            //按下的按鈕 為 "完整"
             case "full":
                 mainWindow.setFormatting(new FullFormatting());
                 break;
+            //按下的按鈕 為 "純文字"
             case "plaintext":
                 mainWindow.setFormatting(new PlaintextFormatting());
                 break;
