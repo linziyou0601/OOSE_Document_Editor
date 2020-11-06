@@ -55,17 +55,21 @@ public class HTMLtoGlyphParser implements Parser<Glyph> {
         ArrayList<Glyph> glyphList = new ArrayList<>();
 
         for (Node node : elems) {
+            //處理文字節點
             if(node instanceof TextNode){
+                //將字串依字元建為Jsoup Element Node
                 for (String s: preProcessedText(((TextNode) node).toString()).split("")) {
                     if(!((TextNode) node).isBlank()) {
                         Element textElement = new Element(Tag.valueOf("character"), "");
-                        if(s.equals(" "))  s = "&nbsp;";
+                        if(s.equals(" "))  s = "&nbsp;";    //空白字元處理
                         textElement.text(s);
                         Glyph g = getParse(textElement);
                         glyphList.add(g);
                     }
                 }
-            }else {
+            }
+            //處理其他節點
+            else {
                 Glyph g = getParse((Element) node);
                 if (g != null) glyphList.add(g);
             }
@@ -87,6 +91,7 @@ public class HTMLtoGlyphParser implements Parser<Glyph> {
     }
 
     public String preProcessedText(String input){
+        //文字節點預處理
         return input.replaceAll(" ", "").replaceAll("(&nbsp;)|(&#160;)|(&amp;nbsp;)", " ");
     }
 

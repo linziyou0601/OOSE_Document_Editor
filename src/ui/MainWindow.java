@@ -78,12 +78,12 @@ public class MainWindow extends Window {
 
     //================================================== GUI ==================================================
     public MainWindow(WindowImp impl) {
-        super(impl);
-        widgetFactory = super.getWidgetFactory();
+        super(impl);                                //把Implementor存著
+        widgetFactory = super.getWidgetFactory();   //依不同的Implementor取得WidgetFactory
 
         //-------------------- JFrame --------------------
         // 建立JFrame
-        frame = super.drawFrame();
+        frame = super.drawFrame();                  //依不同的Implementor建出Frame
         frame.setTitle("OOSE Document Editor");
         frame.setBounds(100, 100, width, height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,8 +137,8 @@ public class MainWindow extends Window {
                 // 執行Visit
                 DrawGlyphVisitor drawGlyphVisitor = new DrawGlyphVisitor(formatting);
                 CountCharacterVisitor countCharacterVisitor = new CountCharacterVisitor();
-                root.accept(drawGlyphVisitor);
-                root.accept(countCharacterVisitor);
+                root.accept(drawGlyphVisitor);      //傳入drawGlyphVisitor處理Glyph解析
+                root.accept(countCharacterVisitor); //利用countCharacterVisitor計算字數
                 // 畫到 editorViewer上
                 editorViewer.setText("<html><head></head>" + drawGlyphVisitor.getParseString() + "</html>");
                 editorViewer.setCaretPosition(Math.min(caretPosition, editorViewer.getDocument().getLength()-1));

@@ -8,6 +8,7 @@ public final class WidgetFactoryProducer {
 
     public static WidgetFactory getFactory(String environment){
 
+        //根據Environment參數決定要Return哪個ConcreteFactory
         switch(environment) {
             case "Win": return new WinWidgetFactory();
             case "Linux": return new LinuxWidgetFactory();

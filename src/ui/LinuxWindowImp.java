@@ -98,7 +98,7 @@ public class LinuxWindowImp implements WindowImp{
 
         MetalLookAndFeel.setCurrentTheme(linux);
 
-        // 設定JFrame外若 Set metl look and feel
+        // 設定JFrame
         try { UIManager.setLookAndFeel(new MetalLookAndFeel()); }
         catch(Exception ex) {}
 

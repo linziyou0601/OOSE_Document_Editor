@@ -18,7 +18,7 @@ public class WinWindowImp implements WindowImp{
 
     @Override
     public JFrame drawFrame() {
-        // 設定JFrame外若 Set metl look and feel
+        // 設定JFrame
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch(Exception ex) {}
 
