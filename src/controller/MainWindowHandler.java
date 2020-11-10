@@ -23,6 +23,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class MainWindowHandler implements ActionListener {
@@ -125,7 +126,7 @@ public class MainWindowHandler implements ActionListener {
 
                     try {
                         // 建立 file reader 及 buffered reader
-                        FileReader fileReader = new FileReader(file);
+                        InputStreamReader fileReader = new InputStreamReader (new FileInputStream(file),StandardCharsets.UTF_8);    //FileReader fileReader = new FileReader(file);
                         BufferedReader bufferedReader = new BufferedReader(fileReader);
                         // 一行一行讀入
                         String opening_oosefile = "";
@@ -166,7 +167,7 @@ public class MainWindowHandler implements ActionListener {
 
                     try {
                         // 建立 file writer 及 buffered writer
-                        FileWriter fileWriter = new FileWriter(file, false);
+                        OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);    //FileWriter fileWriter = new FileWriter(file, false);
                         BufferedWriter writer = new BufferedWriter(fileWriter);
                         // 寫入資料
                         GlyphToOOSEFILEVisitor glyphToOOSEFILEVisitor = new GlyphToOOSEFILEVisitor();
